@@ -2,6 +2,9 @@
 % Robin McCorkell
 % 2017-01-25
 
+# Setup Instructions
+
+Follow the Setup Instructions [here](../../info/setup_instructions.md)
 
 # The Fun™ Begins
 
