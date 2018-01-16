@@ -1,2 +1,2 @@
-This workshop will take you through the basics of x. 
-We'll talk about how to foo and show you how, with a little work, you can bar your baz.
+This workshop will introduce you to Arch Linux, one of the many distributions available.
+We'll talk about how to set it up, make it your own, and derive a sense of pride and accomplishment.

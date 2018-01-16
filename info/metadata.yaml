@@ -1,8 +1,8 @@
-title: Sample Workshop
+title: Arch Linux Workshop
 
 # People who have directly contributed content to this workhsop
 contributors:
-  - Richard HaC
+  - Robin McCorkell
 
 # (optional) Non-contributors we would like to thank for helping to inspire, develop or facilitate this workshop
 thanks:
@@ -10,23 +10,23 @@ thanks:
 
 # (optional) Links that attendees may wish to read after the workshop
 further_reading_links:
-  - text: Sampling
-    url: https://en.wikipedia.org/wiki/Sampling_(music)
-  - text: Best websites a programmer should visit
-    url: https://github.com/sdmg15/Best-websites-a-programmer-should-visit#coding-practice-for-beginners
+  - text: Installation guide - ArchWiki
+    url: https://wiki.archlinux.org/index.php/installation_guide
+  - text: General Troubleshooting - ArchWiki
+    url: https://wiki.archlinux.org/index.php/General_troubleshooting
 
 # (optional) Link to a video recording of the workshop
-recording_link: https://www.youtube.com/watch?v=FHG2oizTlpY
+recording_link: N/A
 
 # (optional) Link to any slides associated with the workshop
-slides_link: https://docs.google.com/presentation/d/10VeyoN7EzxfezPjInAda_uEBZ1yp1UkY7z8ST78Do8Q
+slides_link: TODO
 
 # A set of keywords associated with the workshop
 tags:
   - beginner
-  - javascript
-  - web
-  - programming
+  - linux
+  - command-line
+  - archlinux
 
 # A license code by which the workshop content is released
-license: MIT
+license: N/A

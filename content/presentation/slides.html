@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+
+	<title>Conquering Linux</title>
+
+	<meta name="description" content="Conquering Linux">
+
+		<meta name="author" content="Robin McCorkell" />
+	
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+	
+	<link rel="stylesheet" href="css/custom.css" id="theme">
+
+	<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+	
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+	    document.write( '<link rel="stylesheet" href="css/print/' +
+		( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + 
+		'.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	    </head>
+
+    <body>
+	
+	<div class="reveal">
+
+	    <!-- Any section element inside of this container is displayed as a slide -->
+	    <div class="slides">
+
+		<section data-background="img/intro-background.png">
+		    <h1>Conquering Linux</h1>
+		    <h3>Robin McCorkell</h3>
+		    <h4>2017-01-25</h4>
+		</section>
+
+		
+		<section id="getting-started" class="slide level1">
+<h1>Getting Started</h1>
+<p>Make sure you have:</p>
+<ul>
+<li>VirtualBox installed</li>
+<li>Arch Linux ISO downloaded</li>
+<li>A few slices of pizza next to you :)</li>
+</ul>
+</section>
+<section id="conquering-linux" class="slide level1">
+<h1>Conquering Linux</h1>
+<p>What do those shiny GUIs hide from us?</p>
+<p>We are going to:</p>
+<ul>
+<li>Set up a virtual machine</li>
+<li>Boot into the Arch Linux ISO</li>
+<li>Install Arch Linux</li>
+<li>???</li>
+<li>Profit</li>
+</ul>
+</section>
+<section id="setting-up-a-vm" class="slide level1">
+<h1>Setting up a VM</h1>
+<section id="virtual-machines" class="level2">
+<h2>Virtual Machines</h2>
+<p>For those unfamiliar, a VM is:</p>
+<ul>
+<li>A way to run other OSes on your machine</li>
+<li>A way to segregate resources</li>
+<li>A place to break things with no consequences</li>
+</ul>
+</section>
+<section id="create-the-vm" class="level2">
+<h2>Create the VM</h2>
+<ul>
+<li>Type: Linux, Arch Linux (64-bit)</li>
+<li>RAM: 1024MB is fine, more if you can spare</li>
+<li>Storage: Dynamically allocated, 8GB</li>
+<li>In settings:
+<ul>
+<li>System -&gt; Motherboard -&gt; Enable EFI (important!)</li>
+</ul></li>
+</ul>
+</section>
+<section id="booting-into-the-arch-iso" class="level2">
+<h2>Booting into the Arch ISO</h2>
+<ul>
+<li>Click on the VM, press Start</li>
+<li>Select start-up disk: find your downloaded ISO</li>
+<li>Wait a bit (eat pizza?)</li>
+<li><code>root@archiso ~ #</code></li>
+</ul>
+</section>
+</section>
+<section id="the-fun-begins" class="slide level1">
+<h1>The Fun™ Begins</h1>
+<p>For more details, check out the Arch Wiki - Installation guide</p>
+<figure>
+<img src="img/arch-wiki.png" alt="" />
+</figure>
+</section>
+<section id="step-1-keyboard" class="slide level1">
+<h1>Step 1: Keyboard</h1>
+<p>Default is a US QWERTY layout</p>
+<p>For UK keyboards:</p>
+<pre><code>$ loadkeys uk</code></pre>
+</section>
+<section id="step-2-internet" class="slide level1">
+<h1>Step 2: Internet</h1>
+<p>Installation needs an internet connection, let's test it</p>
+<pre><code>$ ping 8.8.8.8</code></pre>
+<figure>
+<img src="img/ping.png" alt="" />
+</figure>
+</section>
+<section id="step-3-storage" class="slide level1">
+<h1>Step 3: Storage</h1>
+<section id="device-files" class="level2">
+<h2>Device files</h2>
+<p>Hard drives, SSDs, USB drives etc. are usually <code>/dev/sdX</code></p>
+<p>Our HDD is on <code>/dev/sda</code></p>
+<p>Partitions exist as <code>/dev/sdXN</code>, e.g. <code>/dev/sda1</code>, <code>/dev/sda2</code> etc.</p>
+</section>
+<section id="partitioning" class="level2">
+<h2>Partitioning</h2>
+<pre><code>$ cgdisk /dev/sda</code></pre>
+<ol type="1">
+<li>Start 2048 (default), end 256M, type <code>ef00</code></li>
+<li>(under partition 1): use all defaults (100% size, Linux partition)</li>
+</ol>
+<figure>
+<img src="img/partitions.png" alt="" />
+</figure>
+</section>
+<section id="formatting" class="level2">
+<h2>Formatting</h2>
+<pre><code>$ mkfs.fat -F32 /dev/sda1
+$ mkfs.btrfs /dev/sda2</code></pre>
+<figure>
+<img src="img/formatting.png" alt="" />
+</figure>
+</section>
+<section id="mount-the-partitions" class="level2">
+<h2>Mount the partitions</h2>
+<p>For installation, mount everything under <code>/mnt</code></p>
+<p><code>/dev/sda2</code> will be the root filesystem:</p>
+<pre><code>$ mount /dev/sda2 /mnt</code></pre>
+<p><code>/dev/sda1</code> will become <code>/boot</code>:</p>
+<pre><code>$ mkdir /mnt/boot
+$ mount /dev/sda1 /mnt/boot</code></pre>
+</section>
+</section>
+<section id="step-4-installation" class="slide level1">
+<h1>Step 4: Installation</h1>
+<section id="copy-files" class="level2">
+<h2>Copy files</h2>
+<p>Do the install:</p>
+<pre><code>$ pacstrap /mnt base</code></pre>
+<p>Generate <code>/etc/fstab</code>:</p>
+<pre><code>$ genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></pre>
+</section>
+</section>
+<section id="step-5-configuration" class="slide level1">
+<h1>Step 5: Configuration</h1>
+<section id="chroot-into-new-system" class="level2">
+<h2>Chroot into new system</h2>
+<p><code>/mnt</code> now has a ready system, switch to it:</p>
+<pre><code>$ arch-chroot /mnt</code></pre>
+<figure>
+<img src="img/chroot.png" alt="" />
+</figure>
+</section>
+<section id="passwords" class="level2">
+<h2>Passwords</h2>
+<p>Set root password:</p>
+<pre><code>$ passwd</code></pre>
+<figure>
+<img src="img/passwd.png" alt="" />
+</figure>
+</section>
+<section id="locales" class="level2">
+<h2>Locales</h2>
+<p>Edit <code>/etc/locale.gen</code> and uncomment desired locales: probably <code>en_GB.UTF-8 UTF-8</code>.</p>
+<p>Generate locales:</p>
+<pre><code>$ locale-gen</code></pre>
+<figure>
+<img src="img/locale-gen.png" alt="" />
+</figure>
+</section>
+<section id="system-language" class="level2">
+<h2>System language</h2>
+<p>Set the default locale in <code>/etc/locale.conf</code> (create it):</p>
+<pre><code>LANG=en_GB.UTF-8</code></pre>
+</section>
+<section id="timezone" class="level2">
+<h2>Timezone</h2>
+<p>Set the system timezone with the <code>/etc/localtime</code> symlink</p>
+<pre><code>$ ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime</code></pre>
+</section>
+<section id="console-keymap" class="level2">
+<h2>Console keymap</h2>
+<p>Set the keymap permanently in <code>/etc/vconsole.conf</code>:</p>
+<pre><code>KEYMAP=uk</code></pre>
+</section>
+<section id="networking" class="level2">
+<h2>Networking</h2>
+<p>Create <code>/etc/systemd/network/enp0s3.network</code>:</p>
+<pre><code>[Match]
+Name=enp0s3
+[Network]
+DHCP=yes</code></pre>
+<p>Enable required services to run on boot:</p>
+<pre><code>$ systemctl enable systemd-networkd systemd-resolved</code></pre>
+</section>
+<section id="bootloader" class="level2">
+<h2>Bootloader</h2>
+<pre><code>$ bootctl --path=/boot install
+$ cp /usr/share/systemd/bootctl/arch.conf /boot/loader/entries/
+$ cp /usr/share/systemd/bootctl/loader.conf /boot/loader/</code></pre>
+<p>Edit <code>/boot/loader/entries/arch.conf</code>:</p>
+<pre><code>title Arch Linux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+options root=/dev/sda2 rw</code></pre>
+</section>
+<section id="section" class="level2">
+<h2></h2>
+<p>Now exit the chroot:</p>
+<pre><code>$ exit</code></pre>
+<p>Create a final symlink needed for networking:</p>
+<pre><code>$ ln -sf /usr/lib/systemd/resolv.conf /mnt/etc/resolv.conf</code></pre>
+<p>Unmount partitions:</p>
+<pre><code>$ umount -R /mnt</code></pre>
+<p>Reboot!</p>
+</section>
+</section>
+<section id="step-6-boot" class="slide level1">
+<h1>Step 6: Boot</h1>
+<section id="section-1" class="level2">
+<h2></h2>
+<p>Username is <code>root</code></p>
+<figure>
+<img src="img/login.png" alt="" />
+</figure>
+</section>
+<section id="test-the-system" class="level2">
+<h2>Test the system</h2>
+<pre><code>$ ping 8.8.8.8
+$ ping google.com</code></pre>
+</section>
+</section>
+<section id="achievement-complete" class="slide level1">
+<h1>Achievement Complete</h1>
+<p>Where can you go from here?</p>
+<ul>
+<li>Install a GUI (xfce4, kde, gnome3, ...)</li>
+<li>Run a web server</li>
+<li>Set up network attached storage</li>
+<li>Take over the world</li>
+<li>Turn a Raspberry Pi into a media system</li>
+</ul>
+</section>
+	    </div>
+
+		<div class="presentation-hac-logo">
+			<img src="img/hac-logo-light.svg" alt="Hackers at Cambridge" />
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+	    Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+
+		width: 1024,
+		height: 768,
+
+		// default/cube/page/concave/zoom/linear/fade/none
+				transition: Reveal.getQueryHash().transition || 'default',
+		
+		// Optional libraries used to extend on reveal.js
+		dependencies: [
+		    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+		    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+		    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+		    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+		    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+		]
+	    });
+
+	</script>
+
+    </body>
+</html>

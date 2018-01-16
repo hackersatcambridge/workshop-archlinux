@@ -4,9 +4,4 @@
   Optional
  -->
 
-If you cannot push to the repo, check your remote url with `git remote -v`
-If the URL listed there is not your fork then run the following command:
-```
-  git remote set-url origin <url of your fork>
-```
-You should now be able to push!
+ If there are difficulties arising from following the [Installation guide](https://wiki.archlinux.org/index.php/installation_guide), try referring to the [Troubleshooting guide](https://wiki.archlinux.org/index.php/General_troubleshooting).
