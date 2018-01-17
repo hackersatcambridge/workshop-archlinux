@@ -2,13 +2,33 @@
 % Robin McCorkell
 % 2017-01-25
 
-# Setup Instructions
+# Getting Started
 
-Follow the Setup Instructions [here](../../info/setup_instructions.md)
+## Virtual Machines
+
+For those unfamiliar, a VM is:
+
+* A way to run other OSes on your machine
+* A way to segregate resources
+* A place to break things with no consequences
+
+## Create the VM
+
+* Type: Linux, Arch Linux (64-bit)
+* RAM: 1024MB is fine, more if you can spare
+* Storage: Dynamically allocated, 8GB
+* In settings:
+    - System -> Motherboard -> Enable EFI (important!)
+
+## Booting into the Arch ISO
+
+* Click on the VM, press Start
+* Select start-up disk: find your downloaded ISO
+* `root@archiso ~ #`
 
 # The Fun™ Begins
 
-For more details, check out the Arch Wiki - Installation guide
+For more details, check out the [Arch Wiki - Installation guide](https://wiki.archlinux.org/index.php/Installation_guide)
 
 ![](images/arch-wiki.png)
 

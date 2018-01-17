@@ -1,2 +1,2 @@
-This workshop assumes:
-- Basic command line knowledge (you should be comfortable with the `cd`, `ls`, and `man` commands)
+This workshop assumes you are:
+- Comfortable working on the command line

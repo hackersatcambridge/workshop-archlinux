@@ -4,9 +4,9 @@ title: Arch Linux Workshop
 contributors:
   - Robin McCorkell
 
-# (optional) Non-contributors we would like to thank for helping to inspire, develop or facilitate this workshop
-thanks:
-  - Hacky Hal the chatbot pal
+# # (optional) Non-contributors we would like to thank for helping to inspire, develop or facilitate this workshop
+# thanks:
+#   - Hacky Hal the chatbot pal
 
 # (optional) Links that attendees may wish to read after the workshop
 further_reading_links:
@@ -16,10 +16,10 @@ further_reading_links:
     url: https://wiki.archlinux.org/index.php/General_troubleshooting
 
 # (optional) Link to a video recording of the workshop
-recording_link: N/A
+recording_link: https://www.youtube.com/watch?v=AqZWwsM3jaY
 
 # (optional) Link to any slides associated with the workshop
-slides_link: TODO
+slides_link: https://rawgit.com/hackersatcambridge/workshop-archlinux/master/content/presentation/slides.html#/
 
 # A set of keywords associated with the workshop
 tags:
@@ -29,4 +29,4 @@ tags:
   - archlinux
 
 # A license code by which the workshop content is released
-license: N/A
+license: CC-BY-4.0
