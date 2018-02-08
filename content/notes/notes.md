@@ -1,7 +1,3 @@
-% Conquering Linux
-% Robin McCorkell
-% 2017-01-25
-
 # Getting Started
 
 ## Virtual Machines
