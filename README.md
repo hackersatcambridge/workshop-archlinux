@@ -6,6 +6,4 @@ This is a Hackers at Cambridge workshop. This repository holds all the content t
 
 The slides for this workshop can be found here:
 
-[https://rawgit.com/hackersatcambridge/workshop-archlinux/master/content/presentation/slides.html#/](https://rawgit.com/hackersatcambridge/workshop-archlinux/master/content/presentation/slides.html#/)
-
-The notes for this workshop can be found [here](content/notes/notes.md)
+[https://cdn.rawgit.com/hackersatcambridge/workshop-archlinux/19267511/presentation/presentation/slides.html](https://cdn.rawgit.com/hackersatcambridge/workshop-archlinux/19267511/presentation/presentation/slides.html)
