@@ -2,7 +2,7 @@
 
 This is a Hackers at Cambridge workshop. This repository holds all the content to the workshop but the best way to view the content is on our website. Go to:
 
-[https://hackersatcambridge.com/workshops/workshop-archlinux](https://hackersatcambridge.com/workshops/workshop-archlinux)
+[https://hackersatcambridge.com/workshops/archlinux](https://hackersatcambridge.com/workshops/archlinux)
 
 The slides for this workshop can be found here:
 
